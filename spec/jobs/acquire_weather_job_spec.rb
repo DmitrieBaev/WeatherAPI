@@ -1,0 +1,16 @@
+# bundle exec rspec spec/jobs/acquire_weather_job_spec.rb
+
+require 'rails_helper'
+
+RSpec.describe AcquireWeatherJob, type: :job do
+    describe "#perfome_later" do
+        before { $redis.del "cityId:295146:current" }
+
+        it 'заполняем значения текущей погоды' do
+            ActiveJob::Base.queue_adapter = :test
+            expect {
+                AcquireWeatherJob.set(wait_until: 1.seconds.from_now, queue: "low").perform_later
+            }.to have_enqueued_job.on_queue("low").at(1.seconds.from_now)
+        end
+    end
+end
