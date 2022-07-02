@@ -1,24 +1,17 @@
-# README
+# API для статистики по погоде.
 
-This README would normally document whatever steps are necessary to get the
-application up and running.
+Ендпоинты:
+* /api/v1/weather/current
+* /api/v1/weather/forecast
+* /api/v1/weather/historical
+* /api/v1/weather/historical/max
+* /api/v1/weather/historical/min
+* /api/v1/weather/historical/avg
+* /api/v1/weather/by_time?timestamp=
+* /api/v1/health
 
-Things you may want to cover:
+Требований к хранению данных не предъявлено, поэтому проект был создан без ActiveRecord, а в качестве локального хранилища использовался Redis.
 
-* Ruby version
+API разработан с помощью Grape.
 
-* System dependencies
-
-* Configuration
-
-* Database creation
-
-* Database initialization
-
-* How to run the test suite
-
-* Services (job queues, cache servers, search engines, etc.)
-
-* Deployment instructions
-
-* ...
+RSpec-тестами покрыты два job`ера и ендпоинты API.
